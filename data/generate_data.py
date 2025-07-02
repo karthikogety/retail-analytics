@@ -1,9 +1,11 @@
 from faker import Faker
+from kafka import KafkaProducer
 import json
 import time
 
 fake = Faker()
-
+producer = KafkaProducer(bootstrap_servers='localhost:9092',
+                        value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 def generate_sale():
     return {
         "transaction_id": fake.uuid4(),
@@ -26,6 +28,9 @@ def generate_interaction():
 for _ in range(10):
     sale = generate_sale()
     interaction = generate_interaction()
-    print("Sale:", json.dumps(sale))
-    print("Interaction:", json.dumps(interaction))
+    producer.send('sales', sale)
+    producer.send('interactions', interaction)
+    print("Sent Sale:", json.dumps(sale))
+    print("Sent Interaction:", json.dumps(interaction))
+    producer.flush()
     time.sleep(1)  # Simulate real-time data
