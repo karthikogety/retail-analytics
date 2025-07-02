@@ -19,3 +19,6 @@ A data engineering project to build a real-time analytics pipeline for an e-comm
 - Set up Kafka for data ingestion (Step 2).
 - Process data with Spark (Step 3).
 - Build a dashboard with Streamlit (Step 5).
+
+## Status
+Step 1 completed: Project setup, mock data, Docker, and SSH configured.
