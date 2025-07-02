@@ -1,0 +1,8 @@
+venv/
+*.pyc
+__pycache__/
+*.log
+data/*.json
+spark/
+spark-3.5.1-bin-hadoop3/
+airflow_env/
