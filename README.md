@@ -10,15 +10,17 @@ A data engineering project to build a real-time analytics pipeline for an e-comm
 - `docs/`: Documentation.
 
 ## Setup
-1. Install Docker, Python 3.10, and Git.
+1. Install Docker, Docker Compose, Python 3.10, and Git.
 2. Create a virtual environment: `python3 -m venv venv`.
-3. Install dependencies: `pip install faker`.
-4. Run mock data script: `python data/generate_data.py`.
-
-## Next Steps
-- Set up Kafka for data ingestion (Step 2).
-- Process data with Spark (Step 3).
-- Build a dashboard with Streamlit (Step 5).
+3. Install dependencies: `pip install -r requirements.txt`.
+4. Start Kafka and Zookeeper: `docker-compose -f docker/docker-compose.yml up -d`.
+5. Run mock data producer: `python data/generate_data.py`.
+6. Run consumer to verify: `python pipeline/spark_kafka_consumer.py`.
 
 ## Status
-Step 1 completed: Project setup, mock data, Docker, and SSH configured.
+- **Step 1**: Project setup, mock data, Docker, and SSH configured.
+- **Step 2**: Kafka setup with producer and consumer for `sales` and `interactions` topics.
+
+## Next Steps
+- Process data with Spark (Step 3).
+- Build a dashboard with Streamlit (Step 5).
